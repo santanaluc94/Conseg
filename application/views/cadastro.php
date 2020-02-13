@@ -93,7 +93,6 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 <script type="text/javascript">
 	window.onload = function() {
 		$('#cpf').mask('000.000.000-00');
-		$('#birthday').mask('00/00/0000');
 		$('#telefone').mask('(00) 0000-00009');
 	};
 </script>
