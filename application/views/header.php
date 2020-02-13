@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 	<title>Conseg</title>
@@ -26,7 +26,7 @@
 			<div class="collapse navbar-collapse w-100 order-3 dual-collapse2">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item float-right">
-						<a class="nav-link" href="#">Cadastro</a>
+						<a class="nav-link" href="<?= base_url('cadastro') ?>">Cadastro</a>
 					</li>
 					<li class="nav-item float-right">
 						<a class="nav-link" href="#">Login</a>
