@@ -5,9 +5,9 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 <main class="content">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-12">
+			<div class="col-md-10">
 				<div class="card">
-					<div class="card-header">Cadastro de Usuário</div>
+					<div class="card-header bg-dark" style="color: white">Cadastro de Usuário</div>
 					<div class="card-body">
 						<form action="<?= base_url('cadastro/cadastroPost') ?>" method="post">
 							<div class="form-group row">
@@ -53,7 +53,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 								</div>
 							</div>
 							<div class="col-md-6 offset-md-4">
-								<button type="submit" class="btn btn-primary" href='?page=submit'>
+								<button type="submit" class="btn btn-dark" href='?page=submit'>
 									Cadastre-se
 								</button>
 							</div>

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<header class="header">
+	<header class="header" style="margin-bottom: 2.5%">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="<?= base_url(); ?>">Logo</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false">
