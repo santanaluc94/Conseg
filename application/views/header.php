@@ -13,23 +13,40 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?= base_url('public/bootstrap/css/bootstrap.min.css'); ?>" />
+	<style>
+		.form-error{
+			font-size:12px;
+			color:red;
+		}
+	</style>
 </head>
 
 <body>
 	<header class="header" style="margin-bottom: 2.5%">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="<?= base_url(); ?>">Logo</a>
+			<a class="navbar-brand" href="<?= base_url(); ?>">CONSEG Guarulhos</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Cadastro
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?=base_url('cidadao')?>">Cidadão</a>
+						<a class="dropdown-item" href="<?=base_url('conseg')?>">CONSEG</a>		
+						<a class="dropdown-item" href="<?=base_url('demanda')?>">Demandas</a>				
+						<a class="dropdown-item" href="<?=base_url('secretaria')?>">Secretarias</a>						
+						<a class="dropdown-item" href="<?=base_url('cadastro')?>">Usuários</a>
+					</div>					
+				</li>
+			</ul>
 
 			<div class="collapse navbar-collapse w-100 order-3 dual-collapse2">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto">					
 					<li class="nav-item float-right">
-						<a class="nav-link" href="<?= base_url('cadastro') ?>">Cadastro</a>
-					</li>
-					<li class="nav-item float-right">
-						<a class="nav-link" href="#">Login</a>
+						<a class="nav-link" href="#"><button class="btn btn-danger btn-sm">Logout</button></a>
 					</li>
 				</ul>
 			</div>

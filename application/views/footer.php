@@ -1,8 +1,8 @@
 </body>
-<footer class="footer">
-	<div class="container py-5 mb-3">
+<footer class="footer bg-dark text-light mt-5">
+	<div class="container pt-5">
 		<div class="row">
-			<div class="col-sm-4 col-md col-sm-4 col-12 col">
+			<div class="col-sm-4 col-md col-sm-4 col-12 col text-justify">
 				<h4 class="">Sobre a Empresa</h4>
 				<p class="mb-2">
 					Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -53,7 +53,7 @@
 	<div class="container text-center">
 		<hr />
 		<!-- Footer menu -->
-		<div class="section-intro mb-4 single-col-max-width mx-auto">
+		<div class="section-intro pb-4 single-col-max-width mx-auto">
 			<p>Empresa @2020 | Desenvolvido por <a href="#">Your Company Name</a></p>
 		</div>
 		<!-- Company -->

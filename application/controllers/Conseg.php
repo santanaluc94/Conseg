@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Cadastro extends CI_Controller
+class Conseg extends CI_Controller
 {
 	public function __construct()
 	{
@@ -10,10 +10,10 @@ class Cadastro extends CI_Controller
 
 	public function index()
 	{
-		$this->template->show('cadastro');
+		$this->template->show('conseg');
 	}
 
-	public function cadastroPost()
+	public function consegPost()
 	{
 
 		$dados = $this->input->post();
