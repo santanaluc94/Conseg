@@ -9,7 +9,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 				<div class="card">
 					<div class="card-header bg-dark" style="color: white">Cadastro de CONSEGs</div>
 					<div class="card-body">
-						<form action="<?= base_url('conseg/consegPost') ?>" method="post">
+						<form action="<?= base_url('Conseg/consegPost') ?>" method="post">
 							<div class="row">
 								<div class="col-12">
 									<div class="form-group">

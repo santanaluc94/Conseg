@@ -6,6 +6,7 @@ class Conseg extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$conseg_model = $this->load->model('conseg_model');
 	}
 
 	public function index()
@@ -21,16 +22,13 @@ class Conseg extends CI_Controller
 
 
 		$data = [
-			'nome' => $nome,
-			'sobrenome' => $sobrenome,
-			'cpf' => somenteNumeros($cpf),
-			'email' => $email,
-			'telefone' => somenteNumeros($telefone),
-			'senha' => $senha,
-			'status' => 1,
-			'inclusao' => getDataAtual(),
-			'alteracao' => getDataAtual()			
+			'titulo' => $titulo,
+			'presidente_nome' => $nome,
+			'presidente_email' => $email,			
+			'presidente_telefone' => somenteNumeros($celular),					
 		];
+
+		$this->conseg_model->insert_conseg($data);
 		
 		
 	}
