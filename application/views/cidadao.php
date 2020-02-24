@@ -1,66 +1,37 @@
-<?php
-$tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
-?>
 
-<main class="content">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header bg-dark" style="color: white">Cadastro de Cidadãos</div>
-					<div class="card-body">
-						<form action="<?= base_url('cidadao/cidadaoPost') ?>" method="post">
-							<div class="row">
-								<div class="col-12">
-									<div class="form-group">
-										<label for="cidadao" class="col-form-label text-md-right">CONSEG:</label>								
-										<select class="form-control" name="conseg" id="conseg">
-											<option>Selecione o CONSEG do cidadão</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="form-group">
-										<label for="nome" class="col-form-label text-md-right">Nome:</label>
-										<input type="text" id="nome" name="nome" class="form-control" required>								
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-5">
-									<div class="form-group">
-										<label for="email" class="col-form-label text-md-right">E-mail:</label>
-										<input type="email" id="email" name="email" class="form-control" data-validation="email" required>								
-									</div>
-								</div>
-								<div class="col-3">
-									<div class="form-group">
-										<label for="celular" class="col-form-label text-md-right">Celular/ Telefone:</label>								
-										<input type="text" id="telefone" name="celular" class="form-control" data-validation="brphone" required>
-									</div>
-								</div>								
-							</div>
-							<hr>												
-							<div class="row">
-								<div class="col-2">
-									<button type="submit" class="btn btn-dark btn-block">
-										Cadastrar
-									</button>
-								</div>
-							</div>							
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</main>
-
-<script type="text/javascript">
-	window.onload = function() {
-		$('#cpf').mask('000.000.000-00');
-		$('#telefone').mask('(00) 0000-00009');
-	};
-</script>
+<div class="container">
+	<?php if($this->session->flashdata('mensagem')){?>
+		<div class="alert alert-success" role="alert">
+			<?=$this->session->flashdata('mensagem') ?>
+   		</div>
+	<?php } ?>
+	
+	<h1>Cidadãos</h1>
+	<table class="table table-bordered table-striped table-sm tabela" style="font-size:14px;">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>Celular</th>
+				<th>CONSEG</th>
+				<th>Status</th>
+				<th>Editar/Inativar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($cidadaos as $cidadao): ?>
+				<tr>
+					<td><?=$cidadao->CIDNOME?></td>
+					<td><?=$cidadao->CIDEMAIL?></td>
+					<td class="telefone"><?=$cidadao->CIDCELULAR?></td>
+					<td><?=$cidadao->CONSEG?></td>
+					<td><?=$cidadao->STATUS?></td>
+					<td style="min-width:150px;">
+						<a href="<?=base_url("cidadaos/inativar/").$cidadao->CIDIDCIDADAO?>" class="mx-2"><button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> <small>Inativar</small> </button></a>
+						<a href="<?=base_url("cidadaos/editar/").$cidadao->CIDIDCIDADAO?>" class="mx-2"><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> <small>Editar</small> </button></a>					
+					</td>
+				</tr>
+			<?php endforeach;?>
+		</tbody>
+	</table>		
+</div>

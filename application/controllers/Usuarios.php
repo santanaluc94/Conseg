@@ -1,19 +1,28 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Secretaria extends CI_Controller
+class Usuarios extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
+		$usuario_model = $this->load->model('usuario_model');
+
 	}
 
 	public function index()
 	{
-		$this->template->show('secretaria');
+		$dados['usuarios'] = $this->usuario_model->get_usuarios();
+		$this->template->show('usuario');
 	}
 
-	public function secretariaPost()
+	public function cadastro()
+	{
+		$dados['acao'] = 'inserir';
+		$this->template->show('cadastro/usuario',$dados);
+	}
+
+	public function usuarioPost()
 	{
 
 		$dados = $this->input->post();
@@ -28,9 +37,10 @@ class Secretaria extends CI_Controller
 			'telefone' => somenteNumeros($telefone),
 			'senha' => $senha,
 			'status' => 1,
-			'inclusao' => getDataAtual(),
-			'alteracao' => getDataAtual()			
+			'inclusao' => getDataAtual()				
 		];
+
+		$this->usuario_model->insert_usuario($data);
 		
 		
 	}

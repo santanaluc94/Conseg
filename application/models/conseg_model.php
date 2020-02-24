@@ -14,6 +14,12 @@ public function get_consegs()
         return $query->result();
 }
 
+public function get_conseg($id)
+{
+        $query = $this->db->get_where('conseg', array('CONIDCONSEG' => $id));
+        return $query->row();
+}
+
 public function insert_conseg($parametros)
 {
 
@@ -28,13 +34,20 @@ public function insert_conseg($parametros)
         echo $this->db->last_query();
 }
 
-public function update_entry()
+public function update_conseg($id,$parametros)
 {
-        $this->title    = $_POST['title'];
-        $this->content  = $_POST['content'];
-        $this->date     = time();
+        extract($parametros);
 
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
+        $this->connome               = $titulo; // please read the below note
+        $this->conpresidente         = $presidente_nome;
+        $this->conpresidentetelefone = $presidente_telefone;
+        $this->conpresidenteemail    = $presidente_email;
+
+        $this->db->where('CONIDCONSEG', $id);
+        $this->db->update('conseg', $this);
+        echo $this->db->last_query();
 }
+
+
 
 }

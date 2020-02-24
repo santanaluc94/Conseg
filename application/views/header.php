@@ -13,7 +13,11 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?= base_url('public/bootstrap/css/bootstrap.min.css'); ?>" />
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
 	<style>
+		body {
+			font-size:14px;
+		}
 		.form-error{
 			font-size:12px;
 			color:red;
@@ -34,11 +38,11 @@
 						Cadastro
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?=base_url('cidadao')?>">Cidadão</a>
-						<a class="dropdown-item" href="<?=base_url('conseg')?>">CONSEG</a>		
-						<a class="dropdown-item" href="<?=base_url('demanda')?>">Demandas</a>				
-						<a class="dropdown-item" href="<?=base_url('secretaria')?>">Secretarias</a>						
-						<a class="dropdown-item" href="<?=base_url('cadastro')?>">Usuários</a>
+						<a class="dropdown-item" href="<?=base_url('cidadaos')?>">Cidadão</a>
+						<a class="dropdown-item" href="<?=base_url('consegs')?>">CONSEG</a>		
+						<a class="dropdown-item" href="<?=base_url('demandas')?>">Demandas</a>				
+						<a class="dropdown-item" href="<?=base_url('secretarias')?>">Secretarias</a>						
+						<a class="dropdown-item" href="<?=base_url('usuarios')?>">Usuários</a>
 					</div>					
 				</li>
 			</ul>
