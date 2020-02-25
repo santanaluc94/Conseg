@@ -11,6 +11,7 @@ class Demandas extends CI_Controller
 		$secretaria_model = $this->load->model('secretaria_model');
 		$comentario_model = $this->load->model('comentario_model');
 		$status_model = $this->load->model('status_model');
+		$this->load->library('viacep');
 	}
 
 	public function index()
@@ -102,6 +103,14 @@ class Demandas extends CI_Controller
 		redirect("Demandas/index");
 
 
+	}
+
+	public function buscarCep()
+	{
+		$cep = $this->input->post('cep');
+		$cep = somenteNumeros($cep);
+		$cep = $this->viacep->buscarCEP($cep);
+		echo json_encode( $cep );
 	}
 
 	

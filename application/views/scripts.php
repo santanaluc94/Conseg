@@ -82,6 +82,32 @@
                     }
                 }
             });
+
+            $(".cep").keyup(function () {
+
+                if($(this).val().length == 9){
+                    $.ajax({
+                        url: "http://localhost/conseg/demandas/buscarCep",
+                        type: 'POST',
+                        async: true,
+                        dataType: 'json',
+                        data: {'cep' : $(this).val()},
+                        success: function (result) {
+                            $("#endereco").val(result.logradouro)
+                            $("#bairro").val(result.bairro)
+                            $("#cidade").val(result.localidade)
+                            $("#uf").val(result.uf)
+                            $("#complemento").val(result.complemento)
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
+                }
+               
+            });
+
+
         } );
 
     </script>
