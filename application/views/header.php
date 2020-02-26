@@ -26,33 +26,55 @@
 </head>
 
 <body>
-	<header class="header" style="margin-bottom: 2.5%">
+	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="<?= base_url(); ?>">CONSEG Guarulhos</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Cadastro
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?=base_url('cidadaos')?>">Cidadão</a>
-						<a class="dropdown-item" href="<?=base_url('consegs')?>">CONSEG</a>		
-						<a class="dropdown-item" href="<?=base_url('demandas')?>">Demandas</a>				
-						<a class="dropdown-item" href="<?=base_url('secretarias')?>">Secretarias</a>						
-						<a class="dropdown-item" href="<?=base_url('usuarios')?>">Usuários</a>
-					</div>					
-				</li>
-			</ul>
-
-			<div class="collapse navbar-collapse w-100 order-3 dual-collapse2">
-				<ul class="navbar-nav ml-auto">					
-					<li class="nav-item float-right">
-						<a class="nav-link" href="#"><button class="btn btn-danger btn-sm">Logout</button></a>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" href="<?= base_url(); ?>">CONSEG Guarulhos</a>			
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Novo
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="<?=base_url('cidadaos/cadastro')?>">Cidadão</a>
+							<a class="dropdown-item" href="<?=base_url('consegs/cadastro')?>">CONSEG</a>		
+							<a class="dropdown-item" href="<?=base_url('demandas/cadastro')?>">Demandas</a>				
+							<a class="dropdown-item" href="<?=base_url('secretarias/cadastro')?>">Secretarias</a>						
+							<a class="dropdown-item" href="<?=base_url('usuarios/cadastro')?>">Usuários</a>
+						</div>					
 					</li>
-				</ul>
+					<li class="nav-item">
+						<a class="nav-link" href="<?=base_url('demandas')?>">
+							Demandas
+						</a>									
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?=base_url('cidadaos')?>">
+							Cidadãos
+						</a>									
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?=base_url('consegs')?>">
+							Consegs
+						</a>									
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?=base_url('secretarias')?>">
+							Secretarias
+						</a>									
+					</li>
+					<li class="nav-item mr-auto">
+						<a class="nav-link" href="<?=base_url('usuarios')?>">
+							Usuários
+						</a>									
+					</li>									
+				</ul>	
+				<li class="nav-item text-right">
+					<button class="btn btn-danger btn-sm"><i class="fa fa-power-off"></i> Logout</button>
+				</li>
 			</div>
 		</nav>
 	</header>

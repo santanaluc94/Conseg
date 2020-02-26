@@ -16,6 +16,7 @@ class Demandas extends CI_Controller
 
 	public function index()
 	{
+		$dados['status'] = $this->status_model->get_all_status();
 		$dados['demandas'] = $this->demanda_model->get_demandas();
 		$this->template->show('demanda',$dados);
 	}

@@ -1,5 +1,5 @@
 </body>
-<footer class="footer bg-dark text-light mt-5">
+<footer class="footer bg-dark text-light">
 	<div class="container pt-5">
 		<div class="row">
 			<div class="col-sm-4 col-md col-sm-4 col-12 col text-justify">
