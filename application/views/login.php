@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-        <title>Signin Template for Bootstrap</title>
+        <title>CONSEG - Guarulhos</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -20,18 +20,24 @@
     </head>
 
     <body class="text-center">
-        <form class="form-signin">
+        <form class="form-signin" method="post" action="Login/efetuarLogin">
             <img class="mb-4" src="public/img/logo.png" alt="">
             <h1 class="h3 mb-3 font-weight-normal">CONSEG<br> Sistema de Demandas  Guarulhos-SP</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <?php if($this->session->flashdata('mensagem')){?>
+		        <div class="alert alert-danger mt-2" role="alert">
+			        <?=$this->session->flashdata('mensagem') ?>
+   		        </div>
+	        <?php } ?>
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" name="email" class="form-control mb-2" placeholder="Email" required autofocus>
+            <label for="inputPassword" class="sr-only">Senha</label>
+            <input type="password" id="inputPassword" name="senha" class="form-control mb-2" placeholder="Senha" required>
             <div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" value="remember-me"> Manter Conectado
                 </label>
             </div>
+            <a href="<?=base_url("login/solicitar_acesso")?>" >Não sou cadastrado ainda. Cadastrar ?</a><br>
             <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-arrow-right"></i> Acessar</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2020 - CONSEG Guarulhos</p>
         </form>

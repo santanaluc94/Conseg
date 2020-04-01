@@ -3,7 +3,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 ?>
 
 <main class="content">
-	<div class="container">
+	<div class="container conteudo">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
@@ -17,7 +17,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 										<select class="form-control" name="conseg" id="conseg">
 											<option>Selecione o CONSEG da secretaria</option>
 											<?php foreach($consegs as $conseg):?>
-												<option value="<?=$conseg->CONIDCONSEG?>"><?=$conseg->CONNOME?></option>
+												<option value="<?=$conseg->CONIDCONSEG?>" <?php if($secretaria->CONIDCONSEG == $conseg->CONIDCONSEG) { echo "selected"; }?>><?=$conseg->CONNOME?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -27,7 +27,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 								<div class="col-12">
 									<div class="form-group">
 										<label for="titulo" class="col-form-label text-md-right">Secretaria(Nome):</label>
-										<input type="text" id="titulo" name="titulo" class="form-control" required>								
+										<input type="text" id="titulo" name="titulo" class="form-control" value="<?=$secretaria->SECNOME?>" required>								
 									</div>
 								</div>
 							</div>
@@ -35,7 +35,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 								<div class="col-12">
 									<div class="form-group">
 										<label for="nome" class="col-form-label text-md-right">Responsável (Nome):</label>
-										<input type="text" id="nome" name="nome" class="form-control" required>								
+										<input type="text" id="nome" name="nome" class="form-control" value="<?=$secretaria->SECRESPONSAVEL?>" required>								
 									</div>
 								</div>
 							</div>
@@ -43,13 +43,13 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 								<div class="col-5">
 									<div class="form-group">
 										<label for="email" class="col-form-label text-md-right">Responsável (E-mail):</label>
-										<input type="email" id="email" name="email" class="form-control" data-validation="email" required>								
+										<input type="email" id="email" name="email" class="form-control" data-validation="email" value="<?=$secretaria->SECRESPONSAVELEMAIL?>" required>								
 									</div>
 								</div>
 								<div class="col-3">
 									<div class="form-group">
 										<label for="celular" class="col-form-label text-md-right">Responsável (Celular/ Telefone):</label>								
-										<input type="text" id="telefone" name="celular" class="form-control" data-validation="brphone" required>
+										<input type="text" id="telefone" name="celular" class="form-control" data-validation="brphone" value="<?=$secretaria->SECRESPONSAVELTELEFONE?>" required>
 									</div>
 								</div>								
 							</div>

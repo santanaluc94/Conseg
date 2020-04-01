@@ -34,10 +34,36 @@ public function get_demandas()
         return $resultado;
 }
 
+public function get_demandas_status($status)
+{
+        $query = $this->db->get_where('demanda', array('STAIDSTATUS' => $status));
+        $resultado = $query->result();
+
+        foreach($resultado as $key => $item){                
+            $cidadao = $this->cidadao_model->get_cidadao($item->CIDIDCIDADAO);
+            $secretaria = $this->secretaria_model->get_secretaria($item->SECIDSECRETARIA);   
+            $resultado[$key]->SECRETARIA = $secretaria->SECNOME; 
+            $resultado[$key]->CIDADAO = $cidadao->CIDNOME; 
+	}		
+		
+        return $resultado;
+}
+
 public function get_demanda($id)
 {
         $query = $this->db->get_where('demanda', array('DEMIDDEMANDA' => $id));
-        return $query->row();
+        $demanda = $query->row();
+
+        $cidadao = $this->cidadao_model->get_cidadao($demanda->CIDIDCIDADAO);
+        $secretaria = $this->secretaria_model->get_secretaria($demanda->SECIDSECRETARIA); 
+        $conseg = $this->secretaria_model->get_secretaria($demanda->SECIDSECRETARIA);  
+
+        $demanda->SECRETARIA = $secretaria->SECNOME; 
+        $demanda->SECRETARIAEMAIL = $secretaria->SECRESPONSAVELEMAIL; 
+        $demanda->CIDADAO = $cidadao->CIDNOME; 
+
+        return $demanda;
+        
 }
 
 public function insert_demanda($parametros)
@@ -55,13 +81,16 @@ public function insert_demanda($parametros)
         $this->demidprivacidade = (isset ($privacidade)) ? 1 : 0;
         $this->demendereco      = $endereco;
         $this->demcomplemento   = $complemento;
+        $this->demcidade        = $cidade;
         $this->dembairro        = $bairro;        
         $this->demcep           = $cep; 
         $this->demuf            = $uf; 
+	$this->assina           = $this->login_model->assinatura();
+
 
 
         $this->db->insert('demanda', $this);
-        echo $this->db->last_query();
+        return $this->db->insert_id();
 }
 
 public function update_demanda($id,$parametros)
@@ -74,27 +103,32 @@ public function update_demanda($id,$parametros)
         $this->demhora          = $horario;
         $this->demtexto         = $texto_demanda;
         $this->secidsecretaria  = $secretaria; 
-        $this->staidstatus      = 1;
+        $this->staidstatus      = $status;
         $this->demidprivacidade = (isset ($privacidade)) ? 1 : 0;
         $this->demendereco      = $endereco;
         $this->demcomplemento   = $complemento;
+        $this->demcidade        = $cidade;
         $this->dembairro        = $bairro;        
         $this->demcep           = $cep; 
         $this->demuf            = $uf; 
+	$this->assina		= $this->login_model->assinatura();
+
 
         $this->db->where('DEMIDDEMANDA', $id);
         $this->db->update('demanda', $this);
-        echo $this->db->last_query();
+
+        return $this;
 }
 
 public function inativar_demanda($id)
 {        
         $staidstatus        = 0;        
 
+	$this->db->set('assina',$this->login_model->assinatura());
         $this->db->set('STAIDSTATUS', $staidstatus);
-        $this->db->where('DEMIDCODIGO', $id);
+        $this->db->where('DEMIDDEMANDA', $id);
         $this->db->update('demanda');
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 }
 
 

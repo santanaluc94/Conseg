@@ -1,7 +1,7 @@
-    <!-- FontAwesome JS-->
     <script type="text/javascript">
         window.onload = function() {
             $('#cpf').mask('000.000.000-00');
+            $('.cpf').mask('000.000.000-00');
             var SPMaskBehavior = function (val) {
                 return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
             },
@@ -10,6 +10,7 @@
                     field.mask(SPMaskBehavior.apply({}, arguments), options);
                 }
             };
+            
             $('#telefone').mask(SPMaskBehavior, spOptions);
             $('.telefone').mask(SPMaskBehavior, spOptions);
             $('.date').mask('00/00/0000');

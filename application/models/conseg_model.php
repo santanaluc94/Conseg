@@ -29,6 +29,8 @@ public function insert_conseg($parametros)
         $this->conpresidente         = $presidente_nome;
         $this->conpresidentetelefone = $presidente_telefone;
         $this->conpresidenteemail    = $presidente_email;
+	$this->assina		     = $this->login_model->assinatura();
+
 
         $this->db->insert('conseg', $this);
         echo $this->db->last_query();
@@ -42,6 +44,8 @@ public function update_conseg($id,$parametros)
         $this->conpresidente         = $presidente_nome;
         $this->conpresidentetelefone = $presidente_telefone;
         $this->conpresidenteemail    = $presidente_email;
+	$this->assina		     = $this->login_model->assinatura();
+
 
         $this->db->where('CONIDCONSEG', $id);
         $this->db->update('conseg', $this);

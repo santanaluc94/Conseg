@@ -9,6 +9,12 @@ class Cidadaos extends CI_Controller
 		$cidadao_model = $this->load->model('cidadao_model');
 		$conseg_model = $this->load->model('conseg_model');
 		$status_model = $this->load->model('status_model');
+		$secretaria_model = $this->load->model('secretaria_model');
+		$login_model = $this->load->model('login_model');
+
+		if($this->login_model->is_logged_in() == false){
+			redirect("Login");
+		}
 
 	}
 
@@ -21,6 +27,7 @@ class Cidadaos extends CI_Controller
 	public function cadastro()
 	{
 		$dados['consegs'] = $this->conseg_model->get_consegs();
+		$dados['secretarias'] = $this->secretaria_model->get_secretarias();
 		$dados['acao'] = 'inserir';
 		$this->template->show('cadastro/cidadao',$dados);
 	}
@@ -28,6 +35,7 @@ class Cidadaos extends CI_Controller
 	public function editar($id)
 	{
 		$dados['consegs'] = $this->conseg_model->get_consegs();
+		$dados['secretarias'] = $this->secretaria_model->get_secretarias();
 		$dados['cidadao'] = $this->cidadao_model->get_cidadao($id);
 		$dados['acao'] = 'editar';
 		$this->template->show('cadastro/cidadao',$dados);
@@ -54,13 +62,15 @@ class Cidadaos extends CI_Controller
 		];
 
 		if($acao == "inserir"){
-			$this->cidadao_model->insert_cidadao($data);
-			$this->session->set_flashdata('mensagem', 'Cidadão cadastrado com sucesso !!!');
+			$cidadao = $this->cidadao_model->insert_cidadao($data);
+			$this->session->set_flashdata('mensagem', 'Cidadão cadastrado com sucesso !!! Deseja adicionar demanda para esse cidadão ?');
+			$this->session->set_flashdata('cidadao', $cidadao);
 		}
 
 		if($acao == "editar"){
 			$this->cidadao_model->update_cidadao($id,$data);
-			$this->session->set_flashdata('mensagem', 'Cidadão editado com sucesso !!!');
+			$this->session->set_flashdata('mensagem', 'Cidadão editado com sucesso !!! Deseja adicionar demanda para esse cidadão ?');
+			$this->session->set_flashdata('cidadao', $id);
 		}	
 
 		redirect("Cidadaos/index");

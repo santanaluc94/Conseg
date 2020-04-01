@@ -8,6 +8,7 @@ public $usuidcodigo;
 public $comdata;
 public $comhora;
 public $comtexto;
+public $assina;
 
 
 public function get_comentarios($id)
@@ -25,6 +26,8 @@ public function insert_comentario($parametros)
         $this->comdata             = $data;
         $this->comhora             = $horario;
         $this->comtexto            = $texto;
+	$this->assina		   = $this->login_model->assinatura();
+
 
         $this->db->insert('comentarios', $this);
         //echo $this->db->last_query();
@@ -37,6 +40,8 @@ public function update_comentario($id,$parametros)
         $this->comdata             = $data;
         $this->comhora             = $horario;
         $this->comtexto            = $texto;
+	$this->assina	           = $this->login_model->assinatura();
+
 
         $this->db->where('DEMIDDEMANDA', $id);
         $this->db->update('comentarios', $this);

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container conteudo">
 	<?php if($this->session->flashdata('mensagem')){?>
-		<div class="alert alert-success" role="alert">
+		<div class="alert alert-success mt-2" role="alert">
 			<?=$this->session->flashdata('mensagem') ?>
    		</div>
 	<?php } ?>

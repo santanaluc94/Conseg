@@ -7,6 +7,11 @@ class Secretarias extends CI_Controller
 	{
 		parent::__construct();
 		$secretaria_model = $this->load->model('secretaria_model');	
+		$login_model = $this->load->model('login_model');
+
+		if($this->login_model->is_logged_in() == false){
+			redirect("Login");
+		}
 	}
 
 	public function index()

@@ -11,7 +11,13 @@ class Demandas extends CI_Controller
 		$secretaria_model = $this->load->model('secretaria_model');
 		$comentario_model = $this->load->model('comentario_model');
 		$status_model = $this->load->model('status_model');
+		$historico_model = $this->load->model('historico_model');
 		$this->load->library('viacep');
+		$login_model = $this->load->model('login_model');
+
+		if($this->login_model->is_logged_in() == false){
+			redirect("Login");
+		}
 	}
 
 	public function index()
@@ -21,9 +27,20 @@ class Demandas extends CI_Controller
 		$this->template->show('demanda',$dados);
 	}
 
-	public function cadastro()
+	public function lista($status)
 	{
+		$dados['status'] = $this->status_model->get_all_status();
+		$dados['demandas'] = $this->demanda_model->get_demandas_status($status);
+		$dados['status_lista'] = $this->status_model->get_status($status);		
+
+		$this->template->show('demanda',$dados);
+	}
+
+	public function cadastro($cidadao = null)
+	{
+
 		$dados['acao'] = 'inserir';
+		$dados['cidadao_selecionado'] = $cidadao;
 		$dados['cidadaos'] = $this->cidadao_model->get_cidadaos();
 		$dados['secretarias'] = $this->secretaria_model->get_secretarias();
 		$this->template->show('cadastro/demanda',$dados);
@@ -35,6 +52,8 @@ class Demandas extends CI_Controller
 		$dados['demanda'] = $this->demanda_model->get_demanda($id);
 		$dados['cidadaos'] = $this->cidadao_model->get_cidadaos();
 		$dados['secretarias'] = $this->secretaria_model->get_secretarias();
+		$dados['status'] = $this->status_model->get_all_status();
+
 		$this->template->show('cadastro/demanda',$dados);
 	}
 
@@ -64,8 +83,19 @@ class Demandas extends CI_Controller
 		];
 			
 		$this->comentario_model->insert_comentario($data);
+		$this->historico_model->insert_historico(99,$id,1);
 
 		$this->comentar($id);
+		
+	}
+
+	public function inativar($id,$status)
+	{
+		$this->demanda_model->inativar_demanda($id);
+		$this->historico_model->insert_historico(0,$id,1);
+		$this->session->set_flashdata('mensagem', 'Demanda inativada com sucesso !!!');
+
+		redirect("Demandas/lista/".$status);
 		
 	}
 
@@ -80,6 +110,7 @@ class Demandas extends CI_Controller
 			'cidadao' => $cidadao,
 			'data' => $data,
 			'horario' => $horario,
+			'status' => $status,
 			'secretaria' => $secretaria,
 			'privacidade' => (isset($privacidade)) ? $privacidade : 0,
 			'cep' => somenteNumeros($cep),
@@ -92,16 +123,18 @@ class Demandas extends CI_Controller
 		];
 		
 		if($acao == "inserir"){
-			$this->demanda_model->insert_demanda($data);
+			$demanda = $this->demanda_model->insert_demanda($data);
+			$this->historico_model->insert_historico(1,$demanda,1);
 			$this->session->set_flashdata('mensagem', 'Demanda cadastrada com sucesso !!!');
 		}
 
 		if($acao == "editar"){
-			$this->demanda_model->update_demanda($id,$data);
+			$demanda = $this->demanda_model->update_demanda($id,$data);
+			$this->historico_model->insert_historico($status,$id,1);
 			$this->session->set_flashdata('mensagem', 'Demanda editada com sucesso !!!');
 		}
 
-		redirect("Demandas/index");
+		redirect("Demandas/lista/1");
 
 
 	}
@@ -114,7 +147,27 @@ class Demandas extends CI_Controller
 		echo json_encode( $cep );
 	}
 
-	
+	public function enviarEmail($demanda){
+
+		$demanda = $this->demanda_model->get_demanda($demanda);
+
+		$this->email->from("wellingtonfinazzi@gmail.com", 'Meu E-mail');
+		$this->email->subject("CONSEG do Usuário - Demanda para".$demanda->SECRETARIA);
+		//$this->email->reply_to("consegdousuario@conseguarulhos.com");
+		$this->email->to($demanda->SECRETARIAEMAIL); 
+		//$this->email->cc('email_copia@dominio.com');
+		//$this->email->bcc('email_copia_oculta@dominio.com');
+		$this->email->message("
+		<h1>CONSEG do Usuário - Demanda para ".$demanda->SECRETARIA."</h1>
+		<h2>".$demanda->DEMDATA." - ".$demanda->DEMHORA."</h2>
+		<p>".$demanda->CIDNOME." diz: ".$demanda->DEMTEXTO."</p>");
+		$this->email->send();
+		if($this->email->send()){
+			redirect("Demandas/lista/".$demanda->STAIDSTATUS);
+		}else {
+			redirect("Demandas/lista/".$demanda->STAIDSTATUS);
+		}
+	}
 
 	
 	

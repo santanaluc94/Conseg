@@ -7,6 +7,11 @@ class Consegs extends CI_Controller
 	{
 		parent::__construct();
 		$conseg_model = $this->load->model('conseg_model');
+		$login_model = $this->load->model('login_model');
+
+		if($this->login_model->is_logged_in() == false){
+			redirect("Login");
+		}
 	}
 
 	public function index()

@@ -34,6 +34,8 @@ public function insert_secretaria($parametros)
         $this->secresponsaveltelefone   = $celular;
         $this->secresponsavelemail      = $email;
         $this->conidconseg              = $conseg;
+	$this->assina                   = $this->login_model->assinatura();
+
 
         $this->db->insert('secretaria', $this);
         echo $this->db->last_query();
@@ -48,6 +50,8 @@ public function update_secretaria($id,$parametros)
         $this->secresponsaveltelefone   = $celular;
         $this->secresponsavelemail      = $email;
         $this->conidconseg              = $conseg;
+	$this->assina   		= $this->login_model->assinatura();
+
 
         $this->db->where('SECIDSECRETARIA', $id);
         $this->db->update('secretaria', $this);

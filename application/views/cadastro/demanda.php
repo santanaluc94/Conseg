@@ -3,7 +3,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 ?>
 
 <main class="content">
-	<div class="container">
+	<div class="container conteudo">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
@@ -17,7 +17,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 										<select class="form-control" name="cidadao" id="cidadao">
 											<option>Selecione o cidadão para abrir a demanda</option>
 											<?php foreach($cidadaos as $cidadao): ?>
-												<option value="<?=$cidadao->CIDIDCIDADAO?>" <?php if($cidadao->CIDIDCIDADAO == $demanda->CIDIDCIDADAO) { echo "selected"; }?>><?=$cidadao->CIDNOME?></option>
+												<option value="<?=$cidadao->CIDIDCIDADAO?>" <?php if($cidadao->CIDIDCIDADAO == $demanda->CIDIDCIDADAO || $cidadao->CIDIDCIDADAO == $cidadao_selecionado ) { echo "selected"; }?>><?=$cidadao->CIDNOME?></option>
 											<?php endforeach;?>
 										</select>
 									</div>
@@ -108,10 +108,26 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 							<div class="row">
 								<div class="col-2">
 									<input type="hidden" name="acao" value="<?=$acao?>">
-									<button type="submit" class="btn btn-dark btn-block">
+									<button type="submit" class="btn btn-dark btn-block mt-3">
 										<?php if($acao == "editar") { echo "Editar"; }else{ echo "Cadastrar"; }?>										
 									</button>
 								</div>
+								<div class="col-4">
+									<input type="hidden" name="acao" value="<?=$acao?>">
+									<a href="<?=base_url("Demandas/enviarEmail/".$demanda->DEMIDDEMANDA)?>" class="btn btn-danger btn-block mt-3">
+										Enviar Email										
+									</a>
+								</div>
+								<?php if($acao == "editar") { ?>
+									<div class="col-5">
+										Status:
+										<select class="form-control" name="status">
+											<?php foreach($status as $st) : ?>
+												<option value="<?=$st->STAIDCODIGO?>"<?php if($st->STAIDCODIGO == $demanda->STAIDSTATUS) { echo "selected"; }?>><?=$st->STANOME?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+								<?php } ?>
 							</div>							
 						</form>
 					</div>

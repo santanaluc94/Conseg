@@ -8,6 +8,7 @@ public $cidemail;
 public $cidcelular;
 public $cidstatus;
 public $conidconseg;
+public $assina;
 
 
 public function get_cidadaos()
@@ -41,8 +42,12 @@ public function insert_cidadao($parametros)
         $this->cidcelular     = $celular;
         $this->cidstatus      = 1;
         $this->conidconseg    = $id_conseg;
+	$this->assina	      = $this->login_model->assinatura();
+
 
         $this->db->insert('cidadao', $this);
+        return $this->db->insert_id();
+
         //echo $this->db->last_query();
 }
 
@@ -55,6 +60,8 @@ public function update_cidadao($id,$parametros)
         $this->cidcelular     = $celular;
         $this->cidstatus      = 1;
         $this->conidconseg    = $id_conseg;
+	$this->assina	      = $this->login_model->assinatura();
+
 
         $this->db->where('CIDIDCIDADAO', $id);
         $this->db->update('cidadao', $this);
@@ -65,6 +72,7 @@ public function inativar_cidadao($id)
 {        
         $cidstatus = 0;        
 
+	$this->db->set('assina',$this->login_model->assinatura());        
         $this->db->set('CIDSTATUS', $cidstatus);
         $this->db->where('CIDIDCIDADAO', $id);
         $this->db->update('cidadao');

@@ -17,10 +17,18 @@
 	<style>
 		body {
 			font-size:14px;
+			height: 800px;
 		}
 		.form-error{
 			font-size:12px;
 			color:red;
+		}
+		li {
+			list-style-type: none;
+		}		
+
+		.conteudo {    
+			min-height: 800px;
 		}
 	</style>
 </head>
@@ -42,12 +50,11 @@
 							<a class="dropdown-item" href="<?=base_url('cidadaos/cadastro')?>">Cidadão</a>
 							<a class="dropdown-item" href="<?=base_url('consegs/cadastro')?>">CONSEG</a>		
 							<a class="dropdown-item" href="<?=base_url('demandas/cadastro')?>">Demandas</a>				
-							<a class="dropdown-item" href="<?=base_url('secretarias/cadastro')?>">Secretarias</a>						
-							<a class="dropdown-item" href="<?=base_url('usuarios/cadastro')?>">Usuários</a>
+							<a class="dropdown-item" href="<?=base_url('secretarias/cadastro')?>">Secretarias</a>													
 						</div>					
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?=base_url('demandas')?>">
+						<a class="nav-link" href="<?=base_url('demandas/lista/2')?>">
 							Demandas
 						</a>									
 					</li>
@@ -71,10 +78,11 @@
 							Usuários
 						</a>									
 					</li>									
-				</ul>	
+				</ul>				
 				<li class="nav-item text-right">
-					<button class="btn btn-danger btn-sm"><i class="fa fa-power-off"></i> Logout</button>
-				</li>
+					<span class="text-white mr-2">Olá, <?= $this->session->userdata('nome');?></span>
+					<a href="Login/logout"><button class="btn btn-danger btn-sm"><i class="fa fa-power-off"></i> Logout</button></a>
+				</li>				
 			</div>
 		</nav>
 	</header>

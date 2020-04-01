@@ -3,7 +3,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 ?>
 
 <main class="content">
-	<div class="container">
+	<div class="container conteudo">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
@@ -47,11 +47,12 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 							</div>
 							<hr>												
 							<div class="row">
-								<div class="col-2">
+								<div class="d-flex">
 								    <input type="hidden" name="acao" value="<?=$acao?>">
-									<button type="submit" class="btn btn-dark btn-block">
-										<?php if($acao == "editar") { echo "Editar"; }else{ echo "Cadastrar"; }?>										
+									<button type="submit" class="btn btn-dark mx-3">
+										<?php if($acao == "editar") {echo "<i class='fa fa-edit'></i> Editar"; }else{echo "<i class='fa fa-plus'></i> Cadastrar"; }?>										
 									</button>
+									<?php if($acao == "editar") { ?> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Inserir demanda para este cidadão </button> <?php } ?>
 								</div>
 							</div>							
 						</form>
@@ -62,9 +63,15 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 	</div>
 </main>
 
+<?php $this->load->view("modal/modal_demanda");?>
+
+
+
 <script type="text/javascript">
 	window.onload = function() {
 		$('#cpf').mask('000.000.000-00');
 		$('#telefone').mask('(00) 0000-00009');
+
+		// $('#myModal').modal('show');
 	};
 </script>
