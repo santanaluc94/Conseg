@@ -5,7 +5,7 @@ $tipoDeErro = parse_url($_SERVER['REQUEST_URI']);
 <main class="content">
 	<div class="container conteudo">
 		<div class="row justify-content-center">
-			<div class="col-md-12">
+			<div class="col-md-12 mt-2">
 				<div class="card">
 					<div class="card-header bg-dark" style="color: white">Cadastro de CONSEGs</div>
 					<div class="card-body">

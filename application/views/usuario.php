@@ -10,7 +10,7 @@
    		</div>
 	<?php } ?>
 	<h1>Candidatos</h1>
-	<table class="table table-bordered table-striped table-sm">
+	<table class="table bg-white table-bordered table-sm">
 		<thead>
 			<tr>
 				<th>Nome</th>
@@ -45,7 +45,7 @@
 		</tbody>
 	</table>	
 	<h1>Usuários</h1>
-	<table class="table table-bordered table-striped table-sm">
+	<table class="table bg-white table-bordered table-sm">
 		<thead>
 			<tr>
 				<th>Nome</th>

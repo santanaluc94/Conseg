@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
         <!-- Bootstrap core CSS -->
-        <link href="public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
         <link href="public/css/signin.css" rel="stylesheet">
@@ -21,7 +21,7 @@
 
     <body class="text-center">
         <form class="form-signin" method="post" action="Login/efetuarLogin">
-            <img class="mb-4" src="public/img/logo.png" alt="">
+            <img class="mb-4" src="public/img/logo.png" style="width:150px; height:150px;">
             <h1 class="h3 mb-3 font-weight-normal">CONSEG<br> Sistema de Demandas  Guarulhos-SP</h1>
             <?php if($this->session->flashdata('mensagem')){?>
 		        <div class="alert alert-danger mt-2" role="alert">

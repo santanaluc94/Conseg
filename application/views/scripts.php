@@ -28,7 +28,10 @@
 
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
 
     <script>
@@ -52,6 +55,7 @@
     
         $(document).ready( function () {
             $('.tabela').DataTable({
+                responsive: true,
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",
                     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

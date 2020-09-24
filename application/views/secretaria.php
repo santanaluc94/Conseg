@@ -5,7 +5,7 @@
    		</div>
 	<?php } ?>
 	<h1>Secretarias</h1>	
-	<table class="table table-bordered table-striped table-sm tabela">
+	<table class="table bg-white table-bordered table-sm tabela">
 		<thead>
 			<tr>
 				<th>Nome</th>

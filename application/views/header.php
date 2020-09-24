@@ -12,12 +12,16 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="<?= base_url('public/bootstrap/css/bootstrap.min.css'); ?>" />
-	<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+	<link rel="stylesheet" href="<?= base_url('public/bootstrap/css/bootstrap.css'); ?>" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
 	<style>
 		body {
-			font-size:14px;
+			font-size:1rem;
 			height: 800px;
+            background-color:#ECF0F1;
+            font-family: 'Karla', sans-serif;
 		}
 		.form-error{
 			font-size:12px;
@@ -35,7 +39,7 @@
 
 <body>
 	<header class="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>

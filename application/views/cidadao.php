@@ -7,7 +7,7 @@
 	<?php } ?>
 	
 	<h1>Cidadãos</h1>
-	<table class="table table-bordered table-striped table-sm tabela" style="font-size:14px;">
+	<table class="table bg-white table-bordered table-sm tabela" style="font-size:14px;">
 		<thead>
 			<tr>
 				<th>Nome</th>

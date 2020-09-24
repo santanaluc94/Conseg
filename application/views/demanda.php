@@ -1,8 +1,9 @@
-<div class="container conteudo-fluid conteudo">
+<div class="container-fluid conteudo-fluid conteudo">
 	<div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-secondary sidebar">
-          	<div class="sidebar-sticky pt-2">	
+        <nav class="col-md-12 bg-secondary">
+          	<div class="p-4 d-flex flex-sm-column flex-md-row justify-content-between">	
 			  	<?php foreach($status as $st): ?>	
+                    <div class="col-md-4 col-sm-12 my-1">
 					<?php if ($status_lista->STAIDCODIGO == $st->STAIDCODIGO) : ?>
 						<a class="btn btn-primary btn-block text-white" href="<?=base_url("Demandas/lista/".$st->STAIDCODIGO)?>">
 					<?php else : ?>
@@ -11,10 +12,11 @@
 						<span data-feather="home"></span>
 						<?= $st->STANOME?> <span class="sr-only">(current)</span>
 					</a>	
+                    </div>
 				<?php endforeach; ?>						
           	</div>
         </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="container">
           	<div class="d-flex justify-content-between flex-column flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 				<?php if($this->session->flashdata('mensagem')){?>
 					<div class="alert alert-success mt-2" role="alert">
@@ -22,7 +24,7 @@
 					</div>
 				<?php } ?>
 				<h1>Demandas <?=" - ".$status_lista->STANOME?></h1>
-				<table class="table table-bordered table-striped table-sm tabela">
+				<table class="table bg-white table-bordered tabela" style="width:100%;">
 					<thead>
 						<tr>
 							<th>Tipo</th>
